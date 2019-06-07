@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Systemd Basics | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Systemd is a Linux system tool which can be used to start, schedule, monitor, manage system processes and customer applications. I used systemd while configuring my minimal Debian application and run">
+<meta name="keywords" content="Linux, Systemd">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Systemd Basics">
+<meta property="og:url" content="http://yoursite.com/2019/06/07/Systemd-Basics/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Systemd is a Linux system tool which can be used to start, schedule, monitor, manage system processes and customer applications. I used systemd while configuring my minimal Debian application and run">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-07T09:34:01.332Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Systemd Basics">
+<meta name="twitter:description" content="Systemd is a Linux system tool which can be used to start, schedule, monitor, manage system processes and customer applications. I used systemd while configuring my minimal Debian application and run">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Systemd-Basics" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/07/Systemd-Basics/" class="article-date">
+  <time datetime="2019-06-06T17:57:37.000Z" itemprop="datePublished">2019-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Systemd Basics
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Systemd is a Linux system tool which can be used to start, schedule, monitor, manage system processes and customer applications. I used systemd while configuring my minimal Debian application and run some application upon OS bootup and manage the lifecycle of applications.</p>
+<p>This blog can guides you through some of the basics of systemd services. </p>
+<h2 id="Create-a-Custom-systemd-Service-Use-HelloWorld-as-an-example"><a href="#Create-a-Custom-systemd-Service-Use-HelloWorld-as-an-example" class="headerlink" title="Create a Custom systemd Service (Use HelloWorld as an example)"></a>Create a Custom systemd Service (Use HelloWorld as an example)</h2><ol>
+<li><p>Create a script or executable that the service will manage.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#Path: /home/structo/test_service.bash</span><br><span class="line">/usr/bin/java -jar /home/structo/HelloWorld.jar</span><br><span class="line">while :</span><br><span class="line">do</span><br><span class="line">echo &quot;Looping...&quot;;</span><br><span class="line">sleep 30;</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Make it executable.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[sudo] chmod +x /home/structo/test_service.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Create Service file.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#Path: /lib/systemd/system/myservice.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=Example systemd service.</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">ExecStart=/bin/bash /home/structo/test_service.sh</span><br><span class="line">User=structo</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Start and enable the service.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># reload systemd service after editing</span><br><span class="line">[sudo] systemctl daemon-reload</span><br><span class="line"></span><br><span class="line"># start service immediately</span><br><span class="line">[sudo] systemctl start myservice</span><br><span class="line"></span><br><span class="line"># read the status and partial log of myservice</span><br><span class="line">[sudo] systemctl status myservice</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># stop myservice</span><br><span class="line">[sudo] systemctl stop myservice</span><br><span class="line"></span><br><span class="line"># restart myservice</span><br><span class="line">[sudo] systemctl restart myservice</span><br><span class="line"></span><br><span class="line"># my executing enable command, a symblic link will be formed to multi-user.target.wants</span><br><span class="line"># which means the service will be started every time system reboots</span><br><span class="line">[sudo] systemctl enable myservice</span><br><span class="line">Created symlink from /etc/systemd/system/multi-user.target.wants/myservice.service to /lib/systemd/system/myservice.service.</span><br><span class="line"></span><br><span class="line"># to view the full log of the service</span><br><span class="line">[sudo] journalctl -u myservice.service</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/07/Systemd-Basics/" data-id="cjwlwf6ie0000571oedwvka3o" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux-Systemd/">Linux, Systemd</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux-Systemd/">Linux, Systemd</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Linux-Systemd/" style="font-size: 10px;">Linux, Systemd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/07/Systemd-Basics/">Systemd Basics</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
