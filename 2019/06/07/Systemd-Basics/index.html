@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Han Tree Tree">
 <meta property="og:description" content="Systemd is a Linux system tool which can be used to start, schedule, monitor, manage system processes and customer applications. I used systemd while configuring my minimal Debian application and run">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-07T10:23:48.656Z">
+<meta property="og:updated_time" content="2019-06-29T21:05:44.561Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Systemd Basics">
 <meta name="twitter:description" content="Systemd is a Linux system tool which can be used to start, schedule, monitor, manage system processes and customer applications. I used systemd while configuring my minimal Debian application and run">
@@ -305,7 +305,7 @@
 <h2 id="Create-a-Custom-systemd-Service-Use-HelloWorld-as-an-example"><a href="#Create-a-Custom-systemd-Service-Use-HelloWorld-as-an-example" class="headerlink" title="Create a Custom systemd Service (Use HelloWorld as an example)"></a>Create a Custom systemd Service (Use HelloWorld as an example)</h2><ol>
 <li>Create a script or executable that the service will manage.</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#Path: /home/structo/test_service.bash</span></span><br><span class="line">/usr/bin/java -jar /home/structo/HelloWorld.jar</span><br><span class="line"><span class="keyword">while</span> :</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Looping..."</span>;</span><br><span class="line">sleep 30;</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#Path: /home/han/test_service.bash</span></span><br><span class="line">/usr/bin/java -jar /home/structo/HelloWorld.jar</span><br><span class="line"><span class="keyword">while</span> :</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Looping..."</span>;</span><br><span class="line">sleep 30;</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 
 <ol start="2">
 <li>Make it executable.</li>
@@ -348,6 +348,22 @@
       
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/28/Debian-Package/" rel="prev" title="Debian-Package">
+                Debian-Package <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
@@ -421,7 +437,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -434,7 +450,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>

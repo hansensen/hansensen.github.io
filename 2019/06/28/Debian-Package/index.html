@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="debian, linux,">
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="a minion in software engineering industry">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Han Tree Tree">
-<meta property="og:url" content="http://www.hansensen.xyz/index.html">
+<meta name="description" content="Similar to .rpm, .pkg and .dmg, debian package(.deb) is a installation pacakge which is meant for debian OS. It is easy to build, install and interrept. Debian package can be used for file installatio">
+<meta name="keywords" content="debian, linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Debian-Package">
+<meta property="og:url" content="http://www.hansensen.xyz/2019/06/28/Debian-Package/index.html">
 <meta property="og:site_name" content="Han Tree Tree">
-<meta property="og:description" content="a minion in software engineering industry">
+<meta property="og:description" content="Similar to .rpm, .pkg and .dmg, debian package(.deb) is a installation pacakge which is meant for debian OS. It is easy to build, install and interrept. Debian package can be used for file installatio">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-29T21:05:44.561Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Han Tree Tree">
-<meta name="twitter:description" content="a minion in software engineering industry">
+<meta name="twitter:title" content="Debian-Package">
+<meta name="twitter:description" content="Similar to .rpm, .pkg and .dmg, debian package(.deb) is a installation pacakge which is meant for debian OS. It is easy to build, install and interrept. Debian package can be used for file installatio">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://www.hansensen.xyz/">
+  <link rel="canonical" href="http://www.hansensen.xyz/2019/06/28/Debian-Package/">
 
 
 
 
 
-  <title>Han Tree Tree</title>
+  <title>Debian-Package | Han Tree Tree</title>
   
 
 
@@ -143,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -217,9 +218,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -249,9 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/28/Debian-Package/" itemprop="url">Debian-Package</a></h1>
+          <h1 class="post-title" itemprop="name headline">Debian-Package</h1>
         
 
         <div class="post-meta">
@@ -301,9 +300,7 @@
       
 
       
-        
-          
-            <p>Similar to .rpm, .pkg and .dmg, debian package(.deb) is a installation pacakge which is meant for debian OS. It is easy to build, install and interrept. Debian package can be used for file installation and also file compression. This article this a short guide to build a simple debian package and install it to another machine.<br>The example used in this article is to install a systemd service, which describe in the previous blog, to a new machine.</p>
+        <p>Similar to .rpm, .pkg and .dmg, debian package(.deb) is a installation pacakge which is meant for debian OS. It is easy to build, install and interrept. Debian package can be used for file installation and also file compression. This article this a short guide to build a simple debian package and install it to another machine.<br>The example used in this article is to install a systemd service, which describe in the previous blog, to a new machine.</p>
 <h2 id="Debian-Package-Structure"><a href="#Debian-Package-Structure" class="headerlink" title="Debian Package Structure"></a>Debian Package Structure</h2><p>Debian packages are standard Unix ar archives that include two tar archives. One archive holds the control information and another contains the installable data.</p>
 <p>The following tree diagram shows a very simple structure of .deb package. Inside DEBIAN folder does it store all the control related scripts and information.<br>For other folders and files rather than DEBIAN folder, it is as if the debian package is the root directory. For example, the intended installation is <code>/home/han/Documents</code>, in debian package, just put the file inside folder <code>example.deb/home/han/Documents</code>, during installation, the file will be installed to the intended location. As simple as that!</p>
 <p>To install a systemd service, the files should be in the directory <code>/lib/systemd/system</code>. So accoridng to the debian package structure, we should save the origial file under <code>./installer/lib/systemd/system/example.service</code></p>
@@ -345,8 +342,6 @@
 
 <p>Restart your PC and use <code>sudo systemctl status example</code>, you should be able to see the service running.</p>
 
-          
-        
       
     </div>
     
@@ -361,155 +356,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.hansensen.xyz/2019/06/07/Systemd-Basics/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Eugene Han">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Han Tree Tree">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/07/Systemd-Basics/" itemprop="url">Systemd Basics</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-07T01:57:37+08:00">
-                2019-06-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/debian-linux/" rel="tag"># debian, linux</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Systemd is a Linux system tool which can be used to start, schedule, monitor, manage system processes and customer applications. I used systemd while configuring my minimal Debian application and run some application upon OS bootup and manage the lifecycle of applications.</p>
-<p>This blog can guides you through some of the basics of systemd services. </p>
-<h2 id="Create-a-Custom-systemd-Service-Use-HelloWorld-as-an-example"><a href="#Create-a-Custom-systemd-Service-Use-HelloWorld-as-an-example" class="headerlink" title="Create a Custom systemd Service (Use HelloWorld as an example)"></a>Create a Custom systemd Service (Use HelloWorld as an example)</h2><ol>
-<li>Create a script or executable that the service will manage.</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#Path: /home/han/test_service.bash</span></span><br><span class="line">/usr/bin/java -jar /home/structo/HelloWorld.jar</span><br><span class="line"><span class="keyword">while</span> :</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Looping..."</span>;</span><br><span class="line">sleep 30;</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>Make it executable.</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[sudo] chmod +x /home/structo/test_service.sh</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>Create Service file.</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Path: /lib/systemd/system/myservice.service</span></span><br><span class="line">[Unit]</span><br><span class="line">Description=Example systemd service.</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">ExecStart=/bin/bash /home/structo/test_service.sh</span><br><span class="line">User=structo</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>Start and enable the service.</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># reload systemd service after editing</span></span><br><span class="line">[sudo] systemctl daemon-reload</span><br><span class="line"></span><br><span class="line"><span class="comment"># start service immediately</span></span><br><span class="line">[sudo] systemctl start myservice</span><br><span class="line"></span><br><span class="line"><span class="comment"># read the status and partial log of myservice</span></span><br><span class="line">[sudo] systemctl status myservice</span><br><span class="line"></span><br><span class="line"><span class="comment"># stop myservice</span></span><br><span class="line">[sudo] systemctl stop myservice</span><br><span class="line"></span><br><span class="line"><span class="comment"># restart myservice</span></span><br><span class="line">[sudo] systemctl restart myservice</span><br><span class="line"></span><br><span class="line"><span class="comment"># my executing enable command, a symblic link will be formed to </span></span><br><span class="line">multi-user.target.wants</span><br><span class="line"><span class="comment"># which means the service will be started every time system reboots</span></span><br><span class="line">[sudo] systemctl <span class="built_in">enable</span> myservice</span><br><span class="line">Created symlink from /etc/systemd/system/multi-user.target.wants/</span><br><span class="line">myservice.service to /lib/systemd/system/myservice.service.</span><br><span class="line"></span><br><span class="line"><span class="comment"># to view the full log of the service</span></span><br><span class="line">[sudo] journalctl -u myservice.service</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/07/Systemd-Basics/" rel="next" title="Systemd Basics">
+                <i class="fa fa-chevron-left"></i> Systemd Basics
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -519,10 +395,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -530,6 +407,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -550,8 +431,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -624,6 +514,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Debian-Package-Structure"><span class="nav-number">1.</span> <span class="nav-text">Debian Package Structure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pre-and-Post-Scripts"><span class="nav-number">2.</span> <span class="nav-text">Pre and Post Scripts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Build-a-Package"><span class="nav-number">3.</span> <span class="nav-text">Build a Package</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-a-Package"><span class="nav-number">4.</span> <span class="nav-text">Install a Package</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -757,6 +663,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
