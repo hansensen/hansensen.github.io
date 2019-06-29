@@ -14,7 +14,6 @@ Debian packages are standard Unix ar archives that include two tar archives. One
 The following tree diagram shows a very simple structure of .deb package. Inside DEBIAN folder does it store all the control related scripts and information.
 For other folders and files rather than DEBIAN folder, it is as if the debian package is the root directory. For example, the intended installation is `/home/han/Documents`, in debian package, just put the file inside folder `example.deb/home/han/Documents`, during installation, the file will be installed to the intended location. As simple as that!
 
-
 To install a systemd service, the files should be in the directory `/lib/systemd/system`. So accoridng to the debian package structure, we should save the origial file under `./installer/lib/systemd/system/example.service`
 
 ```bash
@@ -37,13 +36,19 @@ In our example, the `preinst` scipt will archive the example.service file into a
 The following _preinst script_ archive the old version of systemd service.
 
 ```bash
-
+#!/bin/bash
+CURRENT=/lib/systemd/system/example.service
+TARGET=/home/han/archive/example.service
+if [-f "$CURRENT" ]; then
+    rm $TARGET
+    mv $CURRENT $TARGET
+fi
 ```
 
 The following _postinst script_ executes `systemctl` command to enable to systemd service.
 
 ```base
-
+echo "your_sudo_password" | sudo -S systemctl enable example
 ```
 
 ## Build a Package
