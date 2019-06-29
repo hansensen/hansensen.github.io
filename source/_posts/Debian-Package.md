@@ -14,26 +14,97 @@ Debian packages are standard Unix ar archives that include two tar archives. One
 The following tree diagram shows a very simple structure of .deb package. Inside DEBIAN folder does it store all the control related scripts and information.
 For other folders and files rather than DEBIAN folder, it is as if the debian package is the root directory. For example, the intended installation is `/home/han/Documents`, in debian package, just put the file inside folder `example.deb/home/han/Documents`, during installation, the file will be installed to the intended location. As simple as that!
 
+
+To install a systemd service, the files should be in the directory `/lib/systemd/system`. So accoridng to the debian package structure, we should save the origial file under `./installer/lib/systemd/system/example.service`
+
 ```bash
-example.deb
-├── DEBIAN
-│   ├── conffiles
-│   ├── control
-│   ├── md5sums
-│   ├── preinst
-│   └── prerm
-├── home
-│   └── han
-│       └── Documents
-└── lib
-    └── example
-        ├── bin
-        └── lib
+        #!/bin/bash
+        #Path: ./installer/home/han/test_service.bash
+        /usr/bin/java -jar /home/structo/HelloWorld.jar
+        while :
+        do
+        echo "Looping...";
+        sleep 30;
+        done
 
 ```
 
 ## Pre and Post Scripts
 
+Pre and Post Scripts can be added to `DEBIAN` folder. As name suggests, they will be executed before and after the installation, carrying pre and post installation tasks.
+In our example, the `preinst` scipt will archive the example.service file into a archive diretory and `postinst` script will execute `systemctl` command to enable the systemd service.
+
+The following _preinst script_ archive the old version of systemd service.
+
+```bash
+
+```
+
+The following _postinst script_ executes `systemctl` command to enable to systemd service.
+
+```base
+
+```
+
 ## Build a Package
 
+1. Name the content folder accoridng to the naming convention
+        Debian package naming convention is:
+
+```bash
+        <project>_<major version>.<minor version>-<package revision>
+```
+
+For example, our example installation package can be named as
+
+```bash
+        installer_1.0-1
+```
+
+2. Create the folder structure according to the explanation in the previous section
+
+```bash
+example.deb
+├── DEBIAN
+│   ├── preinst
+│   └── postinst
+└── lib
+    └── systemd
+        └── system
+              └── example.service
+```
+
+3. Add `control` file to DEBIAN folder
+
+```bash
+Package: example
+Version: 1.0-1
+Section: base
+Priority: optional
+Architecture: i386
+Maintainer: Eugene Han <youremail@email.com>
+Description: Hello World
+ This installer installs nothing at all :)
+ Yes, absolutely nothing :)))
+
+ (the space before each line in the description is important)
+```
+
+4. Build the pacakge
+Build the debian package by executing
+
+```bash
+dpkg-deb --build installer_1.0-1
+```
+
+A file named installer_1.0-1.deb will be generated. 
+
 ## Install a Package
+
+To install the package, simply execute
+
+```bash
+sudo dpkg -i installer_1.0-1.deb
+```
+
+Restart your PC and use `sudo systemctl status example`, you should be able to see the service running.

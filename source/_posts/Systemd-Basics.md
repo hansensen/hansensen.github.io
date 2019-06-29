@@ -14,7 +14,7 @@ This blog can guides you through some of the basics of systemd services.
 
 ```bash
         #!/bin/bash
-        #Path: /home/structo/test_service.bash
+        #Path: /home/han/test_service.bash
         /usr/bin/java -jar /home/structo/HelloWorld.jar
         while :
         do
